@@ -4,6 +4,6 @@ namespace VerbsMinimalAPI.DataAccess
 {
     public interface IDataAccess
     {
-		Task<Verb> GetVerb(string id);
+		Task<Verb> GetVerb(int id);
 	}
 }

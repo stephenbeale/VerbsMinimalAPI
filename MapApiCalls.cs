@@ -13,7 +13,7 @@
             }
 
             [Authorize]
-            public static async Task<IResult> GetVerb(ILoggerFactory loggerFactory, IDataAccess dataAccess, [FromRoute] string id)
+            public static async Task<IResult> GetVerb(ILoggerFactory loggerFactory, IDataAccess dataAccess, [FromRoute] int id)
             {
                 ILogger logger = loggerFactory.CreateLogger(nameof(GetVerb));
 

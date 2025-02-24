@@ -14,7 +14,7 @@ namespace VerbsMinimalAPI.DataAccess
             _configuration = configuration;
         }
 
-        public async Task<Verb> GetVerb(string id)
+        public async Task<Verb> GetVerb(int id)
         {
             using (IDbConnection dbConnection = new SqlConnection(_configuration.GetConnectionString("Default")))
             {
