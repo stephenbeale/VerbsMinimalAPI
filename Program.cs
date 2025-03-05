@@ -11,13 +11,28 @@ builder.Services
     .AddSwaggerGen()
     .AddSingleton<IDataAccess, DataAccess>()
     .AddAuthorization()
-    .AddAuthentication()
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);    
+    .AddAuthentication()    
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/login";
+        options.AccessDeniedPath = "/forbidden";
+    });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorOrigin", builder =>
+    {
+        builder.WithOrigins("https://host.docker.internal:8080")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
 //From AI
-//app.UseCors("AllowBlazorOrigin");
+app.UseCors("AllowBlazorOrigin");
 
 //From error on Swagger
 app.UseAuthorization();
